@@ -24,7 +24,7 @@ data class User(
     val email: String,
 
     @Column(nullable = false)
-    val password: String,
+    private val password: String,
 
     @Column(nullable = false)
     val balance: BigDecimal = BigDecimal.ZERO,
