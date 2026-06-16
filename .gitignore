@@ -1,0 +1,25 @@
+# Compiled
+build/
+out/
+*.class
+
+# Gradle
+.gradle/
+gradle-wrapper.jar
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+*.env
+
+# Logs
+*.log
