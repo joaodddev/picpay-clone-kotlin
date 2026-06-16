@@ -55,11 +55,16 @@ class TransactionServiceTest {
     fun `should transfer successfully`() {
         whenever(userRepository.findByIdWithLock(1L)).thenReturn(Optional.of(sender))
         whenever(userRepository.findByIdWithLock(2L)).thenReturn(Optional.of(receiver))
-        whenever(userRepository.save(any())).thenAnswer { it.arguments[0] as User }
-        whenever(transactionRepository.save(any())).thenAnswer {
-            val t = it.arguments[0] as Transaction
-            t.copy(id = 1L)
-        }
+        whenever(userRepository.save(any<User>())).thenReturn(sender, receiver)
+        whenever(transactionRepository.save(any<Transaction>())).thenReturn(
+            Transaction(
+                id = 1L,
+                sender = sender,
+                receiver = receiver,
+                amount = BigDecimal("100.00"),
+                createdAt = LocalDateTime.now()
+            )
+        )
 
         val result = transactionService.transfer(defaultRequest)
 

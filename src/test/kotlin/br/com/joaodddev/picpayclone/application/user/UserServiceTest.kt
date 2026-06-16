@@ -46,7 +46,7 @@ class UserServiceTest {
     fun `should create user successfully`() {
         whenever(userRepository.existsByEmail(defaultRequest.email)).thenReturn(false)
         whenever(userRepository.existsByDocument(defaultRequest.document)).thenReturn(false)
-        whenever(userRepository.save(any())).thenReturn(defaultUser)
+        whenever(userRepository.save(any<User>())).thenReturn(defaultUser)
 
         val result = userService.createUser(defaultRequest)
 
