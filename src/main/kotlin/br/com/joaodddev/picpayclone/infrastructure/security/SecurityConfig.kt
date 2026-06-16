@@ -56,7 +56,10 @@ class SecurityConfig(
                 it.requestMatchers(
                     "/auth/**",
                     "/users",
-                    "/h2-console/**"
+                    "/h2-console/**",
+                    "/swagger-ui/**",
+                    "/swagger-ui.html",
+                    "/api-docs/**"
                 ).permitAll()
                 it.anyRequest().authenticated()
             }
