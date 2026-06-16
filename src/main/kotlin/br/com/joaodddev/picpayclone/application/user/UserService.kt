@@ -2,11 +2,13 @@ package br.com.joaodddev.picpayclone.application.user
 
 import br.com.joaodddev.picpayclone.domain.user.User
 import br.com.joaodddev.picpayclone.infrastructure.user.UserRepository
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class UserService(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val passwordEncoder: PasswordEncoder
 ) {
 
     fun createUser(request: UserRequestDTO): UserResponseDTO {
@@ -21,7 +23,7 @@ class UserService(
             fullName = request.fullName,
             document = request.document,
             email = request.email,
-            password = request.password,
+            password = passwordEncoder.encode(request.password),
             balance = request.balance,
             userType = request.userType
         )
@@ -48,7 +50,7 @@ class UserService(
             fullName = request.fullName,
             document = request.document,
             email = request.email,
-            password = request.password,
+            password = passwordEncoder.encode(request.password),
             balance = request.balance,
             userType = request.userType
         )
